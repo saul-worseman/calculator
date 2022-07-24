@@ -1,0 +1,8 @@
+7月 24, 2022 1:15:16 下午 logger.LoggerAdapater log
+信息: 3/3 job finished with answer 1
+7月 24, 2022 1:15:46 下午 logger.LoggerAdapater log
+信息: Request 4*4 from Socket[addr=/127.0.0.1,port=8576,localport=18848]
+7月 24, 2022 1:15:46 下午 logger.LoggerAdapater log
+信息: OperatorKind: BINOP
+7月 24, 2022 1:15:46 下午 logger.LoggerAdapater log
+信息: 4*4 job finished with answer 16

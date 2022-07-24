@@ -1,27 +1,28 @@
 package messages;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MidMessage {
     OpeartorKind opeartorKind;
-    List<BigInteger> opearands;
-    List<String> operators;
+    List<BigInteger> operands = new ArrayList<>();
+    List<String> operators = new ArrayList<>();
 
-    public OpeartorKind getOpeartorKind() {
+    public OpeartorKind getOperatorKind() {
         return opeartorKind;
     }
 
-    public void setOpeartorKind(OpeartorKind opeartorKind) {
+    public void setOperatorKind(OpeartorKind opeartorKind) {
         this.opeartorKind = opeartorKind;
     }
 
-    public List<BigInteger> getOpearands() {
-        return opearands;
+    public List<BigInteger> getOperands() {
+        return operands;
     }
 
-    public void setOpearands(List<BigInteger> opearands) {
-        this.opearands = opearands;
+    public void setOperands(List<BigInteger> operands) {
+        this.operands = operands;
     }
 
     public List<String> getOperators() {

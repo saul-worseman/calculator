@@ -1,8 +1,9 @@
 package network;
 
+import calculator.Calculator;
+import calculator.CalculatorBasicImpl;
+import logger.LoggerAdapater;
 import messages.MidMessage;
-import messages.Request;
-import messages.Response;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,21 +14,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class BIOServer implements Server{
-
-    @Override
-    public Response packResult(BigInteger res) {
-        return null;
-    }
-
-    @Override
-    public MidMessage parseRequest(Request request) {
-        return null;
-    }
-
-    @Override
-    public BigInteger processMidMessage(MidMessage midMessage) {
-        return null;
-    }
 
     @Override
     public void start(int port) throws IOException {
@@ -44,7 +30,8 @@ public class BIOServer implements Server{
         }
 
         public void run() {
-            System.out.println(clientSocket);
+            //make sure it is the same logger
+            LoggerAdapater loggerAdapater = LoggerAdapater.getLoggerAdapter();
             try {
                 PrintWriter out = new PrintWriter(
                         clientSocket.getOutputStream(), true);
@@ -52,8 +39,13 @@ public class BIOServer implements Server{
                         new InputStreamReader(clientSocket.getInputStream()));
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {
-                    System.out.println(inputLine);
-                    out.println("wired");
+                    loggerAdapater.log("Request " + inputLine + " from " + clientSocket);
+                    MidMessage midMessage = Server.parseRequest(inputLine);
+                    loggerAdapater.log("OperatorKind: " + midMessage.getOperatorKind());
+                    Calculator calculator = new CalculatorBasicImpl();
+                    BigInteger res = calculator.calculate(midMessage);
+                    loggerAdapater.log(inputLine + " job finished with answer " + res);
+                    out.println(res.toString());
                     out.flush();
                 }
                 in.close();

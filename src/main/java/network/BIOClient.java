@@ -34,7 +34,7 @@ public class BIOClient implements Client {
             out.flush();
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(serverSocket.getInputStream()));
-            System.out.println("服务器响应计算结果为： " + in.readLine());
+            System.out.println("The result is " + in.readLine());
             serverSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
